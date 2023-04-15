@@ -14,13 +14,13 @@ int binaryCompositionGenerator(int totalDigit, int digitNumber,int compositionNu
     int totalCombinations;
     totalCombinations = pow(2,totalDigit);
     cout<<"total combination is supposed to be: "<<totalCombinations<<endl;
-    int digitArray[totalDigit+1][totalCombinations+1];
+    int digitArray[totalDigit+1];
 
 
     //fill intial composition with zero
     for(int i=totalDigit; i>0; i--)
     {
-        digitArray[i][c]=0;
+        digitArray[i]=0;
     }
 
     c++;
@@ -28,7 +28,7 @@ int binaryCompositionGenerator(int totalDigit, int digitNumber,int compositionNu
     //fill the next
     for(int i=totalDigit; i>0; i--)
     {
-        digitArray[i][c]=0;
+        digitArray[i]=0;
     }
 
 
@@ -41,7 +41,7 @@ int binaryCompositionGenerator(int totalDigit, int digitNumber,int compositionNu
         for(int i=totalDigit; i>0; i--)
         {
             //count the steps needed to reach a zero
-            if(digitArray[i][c]!=0)
+            if(digitArray[i]!=0)
             {
                 steps++;
             }
@@ -53,12 +53,12 @@ int binaryCompositionGenerator(int totalDigit, int digitNumber,int compositionNu
 
                 for(int s=steps ; s>0; s--)
                 {
-                    digitArray[t][c]=0;
+                    digitArray[t]=0;
                     t--;
                 }
 
                 //it erased all the past 1's into all zeros. now make the final digit, a one
-                digitArray[t][c]=1;
+                digitArray[t]=1;
                 break;
             }
 
@@ -68,44 +68,42 @@ int binaryCompositionGenerator(int totalDigit, int digitNumber,int compositionNu
         //now we need to operate for next composition
         c++;
 
-        for(int i=totalDigit; i>0; i--)
-        {
-            digitArray[i][c]=digitArray[i][c-1];
-        }
+        for(int c=totalCombinations; c>0; c-- ) {
+
+            for (int i = 1; i <= totalDigit; i++)
+            {
+                if(digitArray[i]==1)
+                {
+                    SetConsoleTextAttribute(h,10);
+                    cout << digitArray[i];
+                }
+                else
+                {
+                    SetConsoleTextAttribute(h,15);
+                    cout << digitArray[i];
+                }
+
+            }
+            SetConsoleTextAttribute(h,4);
+            cout<<"  composition number is: "<<c;
+            cout << "\n";
+
 
     }
 
 
-    for(int c=totalCombinations; c>0; c-- ) {
 
-        for (int i = 1; i <= totalDigit; i++)
-        {
-            if(digitArray[i][c]==1)
-            {
-                SetConsoleTextAttribute(h,10);
-                cout << digitArray[i][c];
-            }
-            else
-            {
-                SetConsoleTextAttribute(h,15);
-                cout << digitArray[i][c];
-            }
-
-        }
-        SetConsoleTextAttribute(h,4);
-        cout<<"  composition number is: "<<c;
-        cout << "\n";
 
 
     }
- return digitArray[digitNumber][compositionNumber];
+ return digitArray[digitNumber];
 }
 
 
 
 int main()
 {
-   int test = binaryCompositionGenerator(9,8,3);
+   int test = binaryCompositionGenerator(9,5,3);
    cout<<test<<"wow"<<endl;
     return 0;
 }
