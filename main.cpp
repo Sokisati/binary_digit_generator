@@ -25,12 +25,6 @@ int binaryCompositionGenerator(int totalDigit, int digitNumber,int compositionNu
 
     c++;
 
-    //fill the next
-    for(int i=totalDigit; i>0; i--)
-    {
-        digitArray[i]=0;
-    }
-
 
     //action begins
     while(c<=totalCombinations)
@@ -66,9 +60,8 @@ int binaryCompositionGenerator(int totalDigit, int digitNumber,int compositionNu
         }
 
         //now we need to operate for next composition
-        c++;
 
-        for(int c=totalCombinations; c>0; c-- ) {
+           //write to console
 
             for (int i = 1; i <= totalDigit; i++)
             {
@@ -88,12 +81,7 @@ int binaryCompositionGenerator(int totalDigit, int digitNumber,int compositionNu
             cout<<"  composition number is: "<<c;
             cout << "\n";
 
-
-    }
-
-
-
-
+      c++;
 
     }
  return digitArray[digitNumber];
